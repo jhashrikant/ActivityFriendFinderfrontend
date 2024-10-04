@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 
 const Recommendations = () => {
+  const API_URL = process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
   // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const isLoggedIn = sessionStorage.getItem('token')
@@ -44,7 +45,7 @@ const Recommendations = () => {
           return
         }
 
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/findnearbyfriends/${user._id}`, {
+        const response = await fetch(`${API_URL}/findnearbyfriends/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const result = await response.json()
@@ -87,6 +88,7 @@ const Recommendations = () => {
                 <h3>User ID: {friend.userId}</h3>
                 <p>Shared Activities: {friend.sharedActivities.join(', ')}</p>
                 <p>Distance: {friend.distance} km away</p>
+                <p style={{fontWeight:'500'}}>Name: {friend.name}</p>
               </div>
             </div>
           ))}

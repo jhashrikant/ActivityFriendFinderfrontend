@@ -29,6 +29,7 @@ const ActivitiesOfInterest = [
 
 const Signup = () => {
 
+  const API_URL = process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -98,7 +99,7 @@ const Signup = () => {
     };
     console.log(combinedData)
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/Signup`, {
+      const response = await fetch(`${API_URL}/Signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
