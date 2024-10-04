@@ -52,9 +52,11 @@ const Recommendations = () => {
         if (response.ok) {
           console.log(result);
           setRecommendations(result.matches)
+          setLoading(false)
         }
         else {
           toast.error(result.message)
+          setLoading(false)
         }
       } catch (error) {
         console.log(error.message || "errorblock")
