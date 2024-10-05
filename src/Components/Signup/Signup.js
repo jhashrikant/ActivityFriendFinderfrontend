@@ -29,7 +29,7 @@ const ActivitiesOfInterest = [
 
 const Signup = () => {
 
-  const API_URL = process.env.REACT_APP_API_BASE_URL
+  const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({

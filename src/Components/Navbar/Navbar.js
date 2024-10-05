@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./Navbar.module.css"
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const NAV_LINKS = [
   {
@@ -27,16 +28,27 @@ const NAV_LINKS = [
 
 
 const Navbar = () => {
+
+  const [hamburgerActive, setHamburgerActive] = useState(false)
+  const handleshowNav = () => {
+    setHamburgerActive((prev) => !prev)
+  }
+
+
   return (
     <header className={styles.header}>
       <Link to={'/'} className={styles.logo}>Activity Friend Finder</Link>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${hamburgerActive ? styles.active : ''}`}>
         {NAV_LINKS?.map(({ id, label, path }) => {
           return (
-            <Link key={id} to={path}>{label}</Link>
+            <Link onClick={()=>setHamburgerActive(false)} key={id} to={path}>{label}</Link>
           )
         })}
       </nav>
+
+      {/* mobile mode */}
+      <GiHamburgerMenu onClick={handleshowNav} className={styles.hamburgermenu} aria-expanded={hamburgerActive} />
+
     </header>
   )
 }

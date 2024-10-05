@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../redux/slices/authSlice';
 const Login = () => {
 
-  const API_URL = process.env.REACT_APP_API_BASE_URL
+  const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_BASE_URL
   console.log(API_URL)
   // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const dispatch = useDispatch()

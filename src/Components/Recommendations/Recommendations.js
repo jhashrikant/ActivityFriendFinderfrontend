@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 
 const Recommendations = () => {
-  const API_URL = process.env.REACT_APP_API_BASE_URL
+  const API_URL = "http://localhost:3001" ||  process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
   // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const isLoggedIn = sessionStorage.getItem('token')
