@@ -3,29 +3,32 @@ import styles from "./Recommendations.module.css"
 // import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 
 const Recommendations = () => {
   const API_URL = "http://localhost:3001" ||  process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
-  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-  const isLoggedIn = sessionStorage.getItem('token')
-
-  useEffect(() => {
-    console.log(isLoggedIn)
-    if (!isLoggedIn) {
-      navigate('/Login')
-    }
-  }, [])
-  // const dispatch = useDispatch()
-  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-  // console.log(isLoggedIn)
-  // const token = sessionStorage.getItem('token')
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // const isLoggedIn = sessionStorage.getItem('token')
 
   // useEffect(() => {
-  //   // Check if token exists and dispatch login
+  //   console.log(isLoggedIn)
   //   if (!isLoggedIn) {
   //     navigate('/Login')
   //   }
+  // }, [])
+
+  // console.log("isLoggedIn",isLoggedIn)
+  // // const dispatch = useDispatch()
+  // // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // // console.log(isLoggedIn)
+  // // const token = sessionStorage.getItem('token')
+
+  // // useEffect(() => {
+  // //   // Check if token exists and dispatch login
+  // //   if (!isLoggedIn) {
+  // //     navigate('/Login')
+  // //   }
 
   // }, [isLoggedIn]);
 
@@ -35,6 +38,7 @@ const Recommendations = () => {
 
   useEffect(() => {
     const fetchRecommendations = async () => {
+      setLoading(true)
       try {
         const token = sessionStorage.getItem('token')
         const user = JSON.parse(sessionStorage.getItem('user')); // Parse the user object

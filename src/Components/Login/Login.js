@@ -24,6 +24,7 @@ const Login = () => {
     email: "",
     password: ""
   })
+  const [loading, setLoading] = useState(false)
 
   const handleFormChange = (event) => {
     setFormData((prevformdata) => {
@@ -36,6 +37,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setLoading(true)
     try {
       const response = await fetch(`${API_URL}/Login`, {
         method: "POST",
@@ -50,6 +52,7 @@ const Login = () => {
         toast.success('Logged In successfully');
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user))
+        setLoading(false)
         //upate the redux store
         dispatch(login(data.user))
         setTimeout(() => {
@@ -58,10 +61,12 @@ const Login = () => {
 
       } else {
         toast.error(data.message);
+        setLoading(false)
       }
     } catch (error) {
       console.error(error.message);
       toast.error(error.message || "An unexpected error occured . Please Try again!")
+      setLoading(false)
     }
   }
 
@@ -99,7 +104,7 @@ const Login = () => {
                 className={styles.input}
               />
             </div>
-            <button className={styles.submitButton}>Login</button>
+            <button disabled={loading} className={styles.submitButton}>{loading ? "Logging in..." : "Login"}</button>
           </form>
         </div>
       </div>

@@ -12,19 +12,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { login, logout } from './redux/slices/authSlice';
 
+const PrivateRoute = ({ element }) => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log(isLoggedIn)
+  return isLoggedIn ? element : <Navigate to="/Login" />;
+};
+
 
 function App() {
 
   const dispatch = useDispatch()
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const token = sessionStorage.getItem('token')
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   useEffect(() => {
     // Check if token exists and dispatch login
-    if (token) {
-      dispatch(login()); // Update Redux store to reflect that user is logged in
+    if (token && user) {
+      dispatch(login(user)); // Update Redux store to reflect that user is logged in
+      console.log('hellonfrom app.js')
     }
-    else{
+    else {
       dispatch(logout())
     }
   }, [dispatch, token]);
@@ -34,11 +42,17 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Routes>
+      {/* <Routes>
         <Route path='/' element={isLoggedIn ? <Home /> : <Navigate to={"/Login"} />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/Recommendations' element={<Recommendations />} />
+      </Routes> */}
+      <Routes>
+        <Route path='/' element={<PrivateRoute element={<Home />} />} />
+        <Route path='/Signup' element={<Signup />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/Recommendations' element={<PrivateRoute element={<Recommendations />} />} />
       </Routes>
       <Footer />
       <Toaster />

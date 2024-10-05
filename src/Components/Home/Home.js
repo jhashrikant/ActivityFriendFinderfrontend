@@ -8,7 +8,7 @@ import { login } from '../../redux/slices/authSlice';
 const Home = () => {
 
   // const dispatch = useDispatch()
-  //   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   //   const token = sessionStorage.getItem('token')
 
   //   useEffect(() => {
@@ -18,17 +18,18 @@ const Home = () => {
   //     }
   //   }, [dispatch, token]);
 
-  const dispatch = useDispatch()
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-  const token = sessionStorage.getItem('token')
+  // const dispatch = useDispatch()
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // // const token = sessionStorage.getItem('token')
 
-  useEffect(() => {
-    // Check if token exists and dispatch login
-    if (!isLoggedIn) {
-      navigate('/Login')
-    }
+  // useEffect(() => {
+  //   // Check if token exists and dispatch login
+  //   if (!isLoggedIn) {
+  //     navigate('/Login')
+  //     return;
+  //   }
 
-  }, [dispatch, token]);
+  // }, [isLoggedIn]);
 
   const navigate = useNavigate()
   return (

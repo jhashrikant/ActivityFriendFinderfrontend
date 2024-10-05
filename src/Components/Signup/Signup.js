@@ -37,6 +37,7 @@ const Signup = () => {
     email: "",
     password: ""
   })
+  const [loading, setLoading] = useState(false)
   // const [Error, setError] = useState("")
   const [selectedActivities, setSelectedActivities] = useState([])
 
@@ -84,6 +85,7 @@ const Signup = () => {
       toast.error("All fields are required!")
       return;
     }
+    setLoading(true)
     // console.log(selectedActivities)
     // console.log(formData)
     console.log(location)
@@ -108,17 +110,20 @@ const Signup = () => {
       });
       const data = await response.json();
       if (response.ok) {
-          toast.success(data.message)
-          setTimeout(() => {
-            navigate('/Login');
-          }, 2000); // 2 seconds delay
+        toast.success(data.message)
+        setLoading(false)
+        setTimeout(() => {
+          navigate('/Login');
+        }, 2000); // 2 seconds delay
       } else {
         toast.error(data.message);
+        setLoading(false)
       }
     }
     catch (error) {
       console.error(error.message);
       toast.error(error.message || "An unexpected error occurred.")
+      setLoading(false)
     }
   }
 
@@ -175,7 +180,7 @@ const Signup = () => {
               </div>
             ))}
           </div>
-          <button className={styles.button}>Signup</button>
+          <button disabled={loading} className={styles.button}>{loading ? "Signing up..." : "Signup"}</button>
         </div>
         <Toaster />
       </form>
