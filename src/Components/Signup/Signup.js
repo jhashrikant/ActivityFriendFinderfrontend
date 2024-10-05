@@ -3,33 +3,11 @@ import styles from "./Signup.module.css"
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
-const ActivitiesOfInterest = [
-  {
-    id: 1,
-    activity: "Swimming"
-  },
-  {
-    id: 2,
-    activity: "Hiking"
-  },
-  {
-    id: 3,
-    activity: "Cricket"
-  },
-  {
-    id: 4,
-    activity: "Hockey"
-  },
-  {
-    id: 5,
-    activity: "Football"
-  }
-]
+import { API_URL } from '../../helpers/utils';
+import { ActivitiesOfInterest } from '../../helpers/utils';
 
 const Signup = () => {
 
-  const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -38,7 +16,6 @@ const Signup = () => {
     password: ""
   })
   const [loading, setLoading] = useState(false)
-  // const [Error, setError] = useState("")
   const [selectedActivities, setSelectedActivities] = useState([])
 
   const [location, setLocation] = useState({ latitude: null, longitude: null });
@@ -167,7 +144,7 @@ const Signup = () => {
           </div>
           <div className={styles.checkboxcontainer}>
             <label>Activities of interest:</label>
-            {ActivitiesOfInterest.map(({ id, activity }) => (
+            {ActivitiesOfInterest?.map(({ id, activity }) => (
               <div key={id} className={styles.checkboxlabel}>
                 <input
                   id={id}

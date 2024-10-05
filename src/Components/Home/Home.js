@@ -3,12 +3,12 @@ import styles from "./Home.module.css"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/slices/authSlice';
-
+import { ActivitiesOfInterest } from '../../helpers/utils';
 
 const Home = () => {
 
   // const dispatch = useDispatch()
-    // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   //   const token = sessionStorage.getItem('token')
 
   //   useEffect(() => {
@@ -60,11 +60,11 @@ const Home = () => {
         <section className={styles.featuredactivities}>
           <h2>Featured Activities</h2>
           <div className={styles.activitycards}>
-            <div className={styles.activitycard}>Hiking</div>
-            <div className={styles.activitycard}>Swimming</div>
-            <div className={styles.activitycard}>Cricket</div>
-            <div className={styles.activitycard}>Hockey</div>
-            <div className={styles.activitycard}>Football</div>
+            {ActivitiesOfInterest?.map(({ activity, id }) => {
+              return (
+                <div key={id} className={styles.activitycard}>{activity}</div>
+              )
+            })}
           </div>
         </section>
         <section className={styles.testimonials}>

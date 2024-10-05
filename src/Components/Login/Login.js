@@ -4,10 +4,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../redux/slices/authSlice';
+import { API_URL } from '../../helpers/utils';
 const Login = () => {
 
-  const API_URL = "http://localhost:3001" || process.env.REACT_APP_API_BASE_URL
-  console.log(API_URL)
   // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const dispatch = useDispatch()
   const isLoggedIn = sessionStorage.getItem('token')

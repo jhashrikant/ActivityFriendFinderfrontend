@@ -37,17 +37,11 @@ function App() {
     }
   }, [dispatch, token]);
 
-  useSessionTimeout() ///logut session after 5mins
+  useSessionTimeout() //logout session after 5mins
 
   return (
     <div>
       <Navbar />
-      {/* <Routes>
-        <Route path='/' element={isLoggedIn ? <Home /> : <Navigate to={"/Login"} />} />
-        <Route path='/Signup' element={<Signup />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/Recommendations' element={<Recommendations />} />
-      </Routes> */}
       <Routes>
         <Route path='/' element={<PrivateRoute element={<Home />} />} />
         <Route path='/Signup' element={<Signup />} />

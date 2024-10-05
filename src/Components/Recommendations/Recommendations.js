@@ -4,9 +4,9 @@ import styles from "./Recommendations.module.css"
 import { useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
+import { API_URL } from '../../helpers/utils'
 
 const Recommendations = () => {
-  const API_URL = "http://localhost:3001" ||  process.env.REACT_APP_API_BASE_URL
   const navigate = useNavigate()
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   // const isLoggedIn = sessionStorage.getItem('token')
