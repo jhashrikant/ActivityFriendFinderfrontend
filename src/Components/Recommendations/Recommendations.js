@@ -9,6 +9,7 @@ import { API_URL } from '../../helpers/utils'
 const Recommendations = () => {
   const navigate = useNavigate()
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  console.log(isLoggedIn)
   // const isLoggedIn = sessionStorage.getItem('token')
 
   // useEffect(() => {

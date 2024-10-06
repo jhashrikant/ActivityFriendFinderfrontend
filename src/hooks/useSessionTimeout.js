@@ -7,8 +7,9 @@ import toast from 'react-hot-toast';
 
 const useSessionTimeout = () => {
   const navigate = useNavigate()
-  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const isLoggedIn = sessionStorage.getItem('token')
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log(isLoggedIn)
+  // const isLoggedIn = sessionStorage.getItem('token')
   console.log(isLoggedIn)
   const dispatch = useDispatch();
 
@@ -21,12 +22,15 @@ const useSessionTimeout = () => {
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('token');
         toast.error("session has been timedout .Please login again");
-        navigate('/Login')
+        setTimeout(() => {
+          navigate('/Login')
+        }, 2000);
+        
       }, 5 * 60 * 1000); // 5 minutes
     }
 
     return () => clearTimeout(timeoutId); // Cleanup on unmount
-  }, [isLoggedIn, dispatch]);
+  }, [isLoggedIn]);
 };
 
 export default useSessionTimeout;

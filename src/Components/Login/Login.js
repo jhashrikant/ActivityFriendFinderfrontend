@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import styles from "./Login.module.css"
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -7,15 +7,14 @@ import { login } from '../../redux/slices/authSlice';
 import { API_URL } from '../../helpers/utils';
 const Login = () => {
 
-  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const dispatch = useDispatch()
-  const isLoggedIn = sessionStorage.getItem('token')
+  // const isLoggedIn = sessionStorage.getItem('token')
   console.log(isLoggedIn)
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
   const user = useSelector((state) => state.auth)
   console.log("user", user)
-
 
   const navigate = useNavigate()
 
@@ -48,7 +47,7 @@ const Login = () => {
       const data = await response.json()
       console.log(data);
       if (response.ok) {
-        toast.success('Logged In successfully');
+        // toast.success('Logged In successfully ');
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user))
         setLoading(false)

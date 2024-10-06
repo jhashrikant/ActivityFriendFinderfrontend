@@ -6,9 +6,11 @@ import { login } from '../../redux/slices/authSlice';
 import { ActivitiesOfInterest } from '../../helpers/utils';
 
 const Home = () => {
+  
 
   // const dispatch = useDispatch()
-  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  console.log(isLoggedIn)
   //   const token = sessionStorage.getItem('token')
 
   //   useEffect(() => {

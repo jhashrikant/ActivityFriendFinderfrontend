@@ -8,6 +8,9 @@ import { ActivitiesOfInterest } from '../../helpers/utils';
 
 const Signup = () => {
 
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  console.log(isLoggedIn)
+
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -63,8 +66,6 @@ const Signup = () => {
       return;
     }
     setLoading(true)
-    // console.log(selectedActivities)
-    // console.log(formData)
     console.log(location)
     const combinedData = {
       name: formData?.name,

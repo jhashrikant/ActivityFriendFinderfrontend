@@ -12,10 +12,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { login, logout } from './redux/slices/authSlice';
 
+
 const PrivateRoute = ({ element }) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn)
-  return isLoggedIn ? element : <Navigate to="/Login" />;
+  console.log(isLoggedIn,"app.private")
+  const token = sessionStorage.getItem('token');  // Fallback to sessionStorage
+
+  if (isLoggedIn || token) {
+    return element;
+  } else {
+    return <Navigate to="/Login" />;
+  }
 };
 
 
