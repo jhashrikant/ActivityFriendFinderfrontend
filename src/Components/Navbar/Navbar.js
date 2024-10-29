@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <header className={styles.header}>
       <Link to={'/'} className={styles.logo}>Activity Friend Finder</Link>
-      <nav className={`${styles.nav} ${isDropdownActive ? styles.active : ''}`}>
+      <nav role='navigation' className={`${styles.nav} ${isDropdownActive ? styles.active : ''}`}>
         {NAV_LINKS?.map(({ id, label, path }) => {
           return (
             <Link key={id} onClick={()=>setIsDropdownActive(false)} to={path}>{label}</Link>
@@ -24,7 +24,7 @@ const Navbar = () => {
       </nav>
 
       {/* hamburger icon*/}
-      <GiHamburgerMenu onClick={handletoggleMenu} className={styles.hamburgermenu} aria-expanded={handletoggleMenu} />
+      <GiHamburgerMenu data-testid="hamburgerIcon" onClick={handletoggleMenu} className={styles.hamburgermenu} role='button' aria-expanded={handletoggleMenu} />
 
     </header>
   )

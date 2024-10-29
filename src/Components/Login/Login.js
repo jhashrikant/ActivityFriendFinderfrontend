@@ -68,10 +68,7 @@ const Login = () => {
     }
   }
 
-
-
   return (
-
     <Fragment>
       {/* <h2 className={styles.Loginheading}>Login to your account</h2> */}
       <div className={styles.main}>
@@ -88,6 +85,7 @@ const Login = () => {
                 type='email'
                 required
                 className={styles.input}
+                aria-required
               />
             </div>
             <div className={styles.formGroup}>
@@ -100,17 +98,17 @@ const Login = () => {
                 type='password'
                 required
                 className={styles.input}
+                aria-required
               />
             </div>
-            <button disabled={loading} className={styles.submitButton}>{loading ? "Logging in..." : "Login"}</button>
+            <button data-testid="submitBtn" disabled={loading} aria-disabled className={styles.submitButton}>{loading ? "Logging in..." : "Login"}</button>
           </form>
         </div>
       </div>
       <Toaster />
     </Fragment>
-
-
   )
 }
 
 export default Login
+
